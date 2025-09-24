@@ -1,0 +1,276 @@
+{
+	"info": {
+		"_postman_id": "26495d1b-083d-4b70-9341-e5bcf15da32a",
+		"name": "Prueba Técnica Quality Control Engineer Semi Senior I - API Testing",
+		"description": "Prueba Tecnica Quality Control Engineer Semi Senior DVP, Daniel Felipe Merchan.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "48215023",
+		"_collection_link": "https://dapip96-2793229.postman.co/workspace/Daniel-Felipe-Merchan-Godoy's-W~d9feac02-75ba-468f-875e-7734831b1af8/collection/48215023-26495d1b-083d-4b70-9341-e5bcf15da32a?action=share&source=collection_link&creator=48215023"
+	},
+	"item": [
+		{
+			"name": "Caso 1 - API Disponible",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Verificar que el status code es 200\r",
+							"pm.test(\"API Disponible\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Verificar que la respuesta es un array JSON\r",
+							"pm.test(\"Respuesta es un array JSON\", function() {\r",
+							"    pm.response.to.be.json;\r",
+							"    pm.response.to.have.jsonBody();\r",
+							"});\r",
+							"\r",
+							"// Verificar que el body no está vacío\r",
+							"pm.test(\"Respuesta no Vacia\", function() {\r",
+							"    pm.expect(pm.response.json().length).to.be.greaterThan(0);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/products",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Caso 2 - Listar electronics",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Verificar API Disponible\r",
+							"pm.test(\"API Disponible\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Verificar que todos los productos son de categoría electronics\r",
+							"pm.test(\"Productos de Electrónica\", function() {\r",
+							"    const products = pm.response.json();\r",
+							"    products.forEach(product => {\r",
+							"        pm.expect(product.category).to.eql(\"electronics\");\r",
+							"    });\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/products/category/electronics",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"products",
+						"category",
+						"electronics"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Caso 3 - Id de Producto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Verificar API Disponible\r",
+							"pm.test(\"API Disponible\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"// Verificar que el ID coincide con el solicitado\r",
+							"pm.test(\"Filtro por ID\", function() {\r",
+							"    const product = pm.response.json();\r",
+							"    pm.expect(product.id).to.eql(5);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/products/5",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"products",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Caso 4 - Crear nuevo producto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Verificar API Disponible y codigo 201 para producto nuevo\r",
+							"pm.test(\"API Disponible\", function() {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"// Verificar que se creó el producto y retorna un ID\r",
+							"pm.test(\"ID Nuevo producto\", function() {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.expect(response).to.have.property('id');\r",
+							"    pm.expect(response.id).to.be.a('number');\r",
+							"});\r",
+							"// Guardar ID del producto\r",
+							"pm.test(\"Guardar ID\", function() {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.collectionVariables.set(\"createdProductId\", response.id);\r",
+							"    console.log(\"Nuevo producto creado con ID:\", response.id);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"PC Portatil DANIEL\",\r\n    \"price\": 1500.99,\r\n    \"description\": \"Producto creado por Daniel Merchan para la prueba tecnica de DVP\",\r\n    \"category\": \"electronics\",\r\n    \"image\": \"https://ibb.co/Kck36QM2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/products",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Caso 5 - Consultar Producto creado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Verificación de existencia de datos\r",
+							"pm.test(\"Response con Datos\", function() {\r",
+							"    pm.expect(pm.response.text().length).to.be.greaterThan(0);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/products/21",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"products",
+						"21"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Caso 6 - Actualizar Imagen del producto creado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test básico de estado\r",
+							"pm.test(\"Estado\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Test de estructura de response\r",
+							"pm.test(\"JSON válido\", function() {\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"image\": \"https://ibb.co/Kck36QM2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/products/1",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"products",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "createdProductId",
+			"value": ""
+		}
+	]
+}
