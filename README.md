@@ -4,12 +4,13 @@
 Este repositorio contiene la solución a la prueba técnica para el cargo de Quality Control Engineer Semi Senior I . La solucion se basa en el analisis y ejecucion de pruebas de API, carga y estres.
 
 ## Estructura del Repositorio
+```
 /prueba-qa-DVP
 │
-├── api-testing # Analisis y ejeucion de casos de prueba de API, carga y estres.
+├── api-testing # Análisis y ejecución de casos de prueba de API, carga y estrés
 │
 └── README.md (este archivo)
-
+```
 ## How to Use (Cómo revisar la prueba)
 - **Revisión Principal:** La parte funcional de la prueba se encuentra en `\prueba-tecnica-Daniel-Felipe-Merchan\api-testing\test-funcionales/doc`. Diríjase a esa carpeta y abra el archivo `Quality Control Engineer Semi Senior I PRUEBA TÉCNICA.docx` para ver el detalle completo de los casos diseñados y sus evidencias de ejecucion.
 
