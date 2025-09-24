@@ -19,9 +19,9 @@ Este repositorio contiene la solución a la prueba técnica para el cargo de Qua
 
 - **Pruebas de Carga y estres:** La parte relacionada con las pruebas de carga se encuentra en `\prueba-tecnica-Daniel-Felipe-Merchan\api-testing\test-carga-estres/docs`. Diríjase a esa carpeta y abra el 	 archivo de acuerdo al escenario para ver el detalle completo de los casos diseñados y sus evidencias
 
-- **Recursos Tecnicos Ejecucion carga y estres:**  La parte relacioanda con la ejecución tecnica de los escenarios de carga y estres se encuentra en `\prueba-tecnica-Daniel-Felipe-Merchan\api-testing\test-carga-estres\jmeter"
+- **Recursos Tecnicos Ejecucion carga y estres:** La parte relacioanda con la ejecución tecnica de los escenarios de carga y estres se encuentra en `\prueba-tecnica-Daniel-Felipe-Merchan\api-testing\test-carga-estres\jmeter"
 
-- ** Reportes HTML pruebas de carga y estres:** Los reportes en formato HTML para evidenciar a mayor detalle los resultados de las pruebas de carga y estres se encuentran en `\prueba-tecnica-Daniel-Felipe-Merchan\api-testing\test-carga-estres\results"
+- **Reportes HTML pruebas de carga y estres:** Los reportes en formato HTML para evidenciar a mayor detalle los resultados de las pruebas de carga y estres se encuentran en `\prueba-tecnica-Daniel-Felipe-Merchan\api-testing\test-carga-estres\results"
 
   ## Herramientas usadas
  - Jmeter
